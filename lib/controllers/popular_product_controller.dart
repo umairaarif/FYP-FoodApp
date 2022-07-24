@@ -9,9 +9,7 @@ class PopularProductController extends GetxController {
   List<dynamic> get popularProductList => _popularProductList;
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
-  // void Testing() {
-  //   print("Testing method calling");
-  // }
+  
 
   Future<void> getPopularProductList() async {
     // print("helo");

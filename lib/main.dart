@@ -24,14 +24,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Get.find<PopularProductController>().Testing();
     Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList;
+    Get.find<RecommendedProductController>().getRecommendedProductList();
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Food Delivery',
-      home: RecommededFoodDetails(),
+      home: MainFoodPage(),
+      //home: RecommededFoodDetails(),
       //home: MainFoodPage(),
-      // initialRoute: RouteHelper.initial,
+       initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
       // home: PopularFoodDetail(),
     );
   }
