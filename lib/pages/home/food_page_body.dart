@@ -54,10 +54,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               ? Container(
                   //color: Colors.redAccent,
                   height: Dimensions.pageView,
-                  child: GestureDetector(
-                    onTap: (() {
-                      Get.toNamed(RouteHelper.getPopularFood());
-                    }),
+              
                     child: PageView.builder(
                       controller: pageController,
                       itemCount: popularProducts.popularProductList.length,
@@ -66,7 +63,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             popularProducts.popularProductList[position]);
                       },
                     ),
-                  ),
+                 
                 )
               : CircularProgressIndicator(color: AppColors.mainColor);
         }),
@@ -118,6 +115,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ],
           ),
         ),
+        //Recommended Products
         //list of food and images
         
         GetBuilder<RecommendedProductController>(builder: (recommendedProduct) {
@@ -129,7 +127,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: (() {
-                        Get.toNamed(RouteHelper.getRecommendedFood());
+                        Get.toNamed(RouteHelper.getRecommendedFood(index));
                       }),
                       child: Container(
                         margin: EdgeInsets.only(
@@ -182,9 +180,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                         text: recommendedProduct
                                             .recommendedProductList[index].name!,
                                         size: Dimensions.font26,
-                                        // text: recommendedProduct
-                                        //     .recommendedProductList[index].name!,
-                                        //size: Dimensions.font26,
+                                      
                                       ),
                                       SizedBox(
                                         height: Dimensions.height10,
@@ -260,21 +256,26 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       transform: matrix,
       child: Stack(
         children: [
-          Container(
-            height: Dimensions.pageViewConatainer,
-            margin: EdgeInsets.only(
-                left: Dimensions.width10, right: Dimensions.width10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius30),
-                color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    AppConstants.BASE_URL +
-                        AppConstants.UPLOAD_URL +
-                        popularProduct.img!,
-                  ),
-                )),
+          GestureDetector(
+            onTap: (() {
+                      Get.toNamed(RouteHelper.getPopularFood(index));
+                    }),
+            child: Container(
+              height: Dimensions.pageViewConatainer,
+              margin: EdgeInsets.only(
+                  left: Dimensions.width10, right: Dimensions.width10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius30),
+                  color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      AppConstants.BASE_URL +
+                          AppConstants.UPLOAD_URL +
+                          popularProduct.img!,
+                    ),
+                  )),
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
