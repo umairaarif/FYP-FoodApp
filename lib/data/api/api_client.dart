@@ -1,6 +1,5 @@
 import 'package:food_delivery/utils/app_constant.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
 class ApiClient extends GetConnect implements GetxService {
   late String token;
@@ -24,7 +23,7 @@ class ApiClient extends GetConnect implements GetxService {
     try {
       Response response = (await get(uri));
       //print(response.bodyBytes);
-     print("call api class");
+      print("call api class");
       // print('get uri ' + response.statusCode.toString());
       return response;
     } catch (e) {
