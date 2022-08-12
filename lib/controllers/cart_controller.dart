@@ -49,9 +49,7 @@ class CartController extends GetxController {
           );
         });
       } else {
-        Get.snackbar(
-            "Item count", "You should add at least one item in the cart!",
-            backgroundColor: AppColors.mainColor, colorText: Colors.white);
+        Get.snackbar("Item count", "You should add at least one item in the cart!", backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
     cartRepo.addToCartList(getItems);
@@ -110,5 +108,29 @@ class CartController extends GetxController {
     for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
+  }
+
+  void addToCartHistory() {
+    cartRepo.addToCartHistoryList();
+    clear();
+  }
+
+  void clear() {
+    _items = {};
+    update();
+  }
+
+  List<CartModel> getCartHistoryList() {
+    return cartRepo.getCartHistoryList();
+  }
+
+  set setItems(Map<int, CartModel> setItems) {
+    _items = {};
+    _items = setItems;
+  }
+
+  void addToCartList() {
+    cartRepo.addToCartList(getItems);
+    update();
   }
 }
