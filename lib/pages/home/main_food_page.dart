@@ -17,10 +17,11 @@ class MainFoodPage extends StatefulWidget {
 }
 
 class _MainFoodPageState extends State<MainFoodPage> {
-  Future<void>_loadResource()async{
+  Future<void> _loadResource() async {
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductController>().getRecommendedProductList();
   }
+
   @override
   void initState() {
     super.initState();
@@ -30,62 +31,60 @@ class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      child: Column(
-      children: [
-        //Showing header
-        Container(
-          child: Container(
-            margin: EdgeInsets.only(
-                top: Dimensions.height45, bottom: Dimensions.height15),
-            padding: EdgeInsets.only(
-                left: Dimensions.width20, right: Dimensions.width20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
+        child: Column(
+          children: [
+            //Showing header
+            Container(
+              child: Container(
+                margin: EdgeInsets.only(top: Dimensions.height45, bottom: Dimensions.height15),
+                padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    BigText(
-                      text: "Pakistan",
-                      color: AppColors.mainColor,
-                    ),
-                    Row(
+                    Column(
                       children: [
-                        SmallText(
-                          text: "Gujrat",
-                          color: Colors.black,
+                        BigText(
+                          text: "Pakistan",
+                          color: AppColors.mainColor,
                         ),
-                        Icon(Icons.arrow_drop_down_rounded)
+                        Row(
+                          children: [
+                            SmallText(
+                              text: "Gujrat",
+                              color: Colors.black,
+                            ),
+                            Icon(Icons.arrow_drop_down_rounded)
+                          ],
+                        )
                       ],
-                    )
+                    ),
+                    // Center(
+                    //   child: Container(
+                    //     width: Dimensions.width45,
+                    //     height: Dimensions.height45,
+                    //     child: Icon(
+                    //       Icons.search,
+                    //       color: Colors.white,
+                    //       size: Dimensions.iconSize24,
+                    //     ),
+                    //     decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.circular(Dimensions.radius15),
+                    //       color: AppColors.mainColor,
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
-                Center(
-                  child: Container(
-                    width: Dimensions.width45,
-                    height: Dimensions.height45,
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.white,
-                      size: Dimensions.iconSize24,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius15),
-                      color: AppColors.mainColor,
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
+            //Showing the body
+            Expanded(
+              child: SingleChildScrollView(
+                child: FoodPageBody(),
+              ),
+            ),
+          ],
         ),
-        //Showing the body
-        Expanded(
-          child: SingleChildScrollView(
-            child: FoodPageBody(),
-          ),
-        ),
-      ],
-    ), onRefresh: _loadResource);
-        
+        onRefresh: _loadResource);
   }
 }

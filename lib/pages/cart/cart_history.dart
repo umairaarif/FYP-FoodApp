@@ -44,7 +44,7 @@ class CartHistory extends StatelessWidget {
       if (index < getCartHistoryList.length) {
         DateTime parseDate = DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[listCounter].time!);
         var inputDate = DateTime.parse(parseDate.toString());
-        var outputFormat = DateFormat("MM/dd/yyyy hh:mm a");
+        var outputFormat = DateFormat("dd/MM/yyyy hh:mm a");
         outputDate = outputFormat.format(inputDate);
       }
       return BigText(text: outputDate);
